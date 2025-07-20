@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       suggestions.addEventListener("click", e => {
         if (e.target.tagName === "LI") {
           const username = e.target.textContent;
-          window.location.href = `user_profile.html?username=${username}`;
+          window.location.href = `https://meixup.github.io/mu/friend/user_profile.html?username=${username}`;
         }
       });
     });
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // View profile button click
   viewBtn.addEventListener("click", () => {
     if (selectedUsername) {
-      window.location.href = `user_profile.html?username=${selectedUsername}`;
+      window.location.href = `https://meixup.github.io/mu/friend/user_profile.html?username=${selectedUsername}`;
     }
   });
 
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (selectedUsername && selectedUserPic) {
       localStorage.setItem("chatWithUser", selectedUsername);
       localStorage.setItem("chatWithUserPic", selectedUserPic);
-      window.location.href = `/chat/personal_chat.html?with=${selectedUsername}`;
+      window.location.href = `https://meixup.github.io/mu/chat/personal_chat.html?with=${selectedUsername}`;
     }
   });
 
