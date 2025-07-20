@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!email) {
         alert("Not logged in");
-        window.location.href = "/login/login.html";
+        window.location.href = "https://meixup.github.io/mu/login/login.html";
         return;
     }
 
