@@ -1,4 +1,4 @@
-const socket = io('http://127.0.0.1:5000');
+const socket = io('https://6a99726a09b8.ngrok-free.app');
 
 // Get current and selected user info from localStorage
 const currentUser = localStorage.getItem("username");
@@ -28,7 +28,7 @@ socket.emit('join_room', { room: roomId });
 
 // Load chat history
 function loadMessages() {
-  fetch(`http://127.0.0.1:5000/api/messages/${selectedUser}?from=${currentUser}`)
+  fetch(`https://6a99726a09b8.ngrok-free.app/api/messages/${selectedUser}?from=${currentUser}`)
     .then(res => res.json())
     .then(messages => {
       const msgContainer = document.getElementById('chat-messages');
@@ -120,7 +120,7 @@ micBtn.addEventListener('click', () => {
 
 // online status
 function updateUserStatus(isActive) {
-  fetch('http://127.0.0.1:5000/api/update-status', {
+  fetch('https://6a99726a09b8.ngrok-free.app/api/update-status', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
