@@ -13,7 +13,7 @@
     <script>
         const currentUser = localStorage.getItem("username");
 
-        fetch(`http://127.0.0.1:5000/api/recent-users?user=${currentUser}`)
+        fetch(`https://6a99726a09b8.ngrok-free.app/api/recent-users?user=${currentUser}`)
             .then(res => res.json())
             .then(users => {
                 const container = document.getElementById("recent-users");
@@ -24,7 +24,7 @@
                     div.onclick = () => {
                         localStorage.setItem("chatWithUser", user.username);
                         localStorage.setItem("chatWithUserPic", user.profile_pic);
-                        window.location.href = "/chat/personal_chat.html";
+                        window.location.href = "https://meixup.github.io/mu/chat/personal_chat.html";
                     };
                     container.appendChild(div);
                 });
