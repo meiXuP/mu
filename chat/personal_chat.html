@@ -1,0 +1,47 @@
+<!-- chat.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeiXuP Chat</title>
+    <link rel="stylesheet" href="personal_chat.css">
+</head>
+
+<body>
+    <div class="chat-container">
+        <!-- Chat Section -->
+        <div class="chat-section">
+            <!-- Chat Header -->
+            <div class="chat-header" id="chat-header">
+                <img id="chat-user-pic" class="profile-pic" src="/static/uploads/default.jpg" alt="User Pic" />
+                <span id="chat-username">Chat Username</span>
+                <span class="status-dot ${user.is_active ? 'online' : 'offline'}"></span>
+
+            </div>
+
+            <!-- Chat Messages -->
+            <div class="chat-messages" id="chat-messages"></div>
+
+            <!-- Input Section -->
+            <div class="chat-input">
+                <input type="text" id="msg-input" placeholder="Type a message..." />
+                <button id="mic-btn">🎤</button>
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Preview Modal -->
+    <div id="preview-modal">
+        <img id="preview-img" src="" alt="Preview" />
+    </div>
+
+    <!-- JS Libraries -->
+    <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+    <!-- Custom Chat Logic -->
+    <script src="personal_chat.js"></script>
+</body>
+
+</html>
