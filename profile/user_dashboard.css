@@ -1,0 +1,358 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fefefe;
+    color: #222;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 25px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #ff6a00, #ee0979);
+    padding: 15px 20px;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.profile-pic {
+    width: 100px;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.quick-actions {
+    margin: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.action-btn {
+    margin: 5px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    background: linear-gradient(to right, #fc466b, #3f5efb);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.action-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #ff416c;
+    color: white;
+    border-radius: 8px;
+}
+
+.dark-mode {
+    background-color: #1e1e2f;
+    color: #e0e0e0;
+}
+
+.dark-mode .profile {
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+}
+
+.dark-mode header {
+    background: linear-gradient(to right, #654ea3, #eaafc8);
+    color: #fff;
+}
+
+.dark-mode footer {
+    background-color: #3a3a5d;
+    color: #ddd;
+}
+
+.dark-mode .action-btn {
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
+}
+
+
+
+/* Toggle Button */
+.mode-toggle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  outline: none;
+}
+
+.icon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+/* Sun */
+.icon.sun::before {
+  content: "🌞";
+}
+
+/* Moon */
+.icon.moon::before {
+  content: "🌙";
+}
+
+/* Default light mode */
+.mode-toggle .sun {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+.mode-toggle .moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+
+/* When in dark mode */
+.dark-mode .mode-toggle .sun {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+.dark-mode .mode-toggle .moon {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+
+
+
+/* navigation bar */
+
+.main-nav {
+    background-color: #007bff;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 1rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    background-color: rgba(255,255,255,0.2);
+}
+
+.nav-search input {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: none;
+    min-width: 200px;
+}
+
+
+/* dark mode for navigation bar */
+
+.dark-mode .main-nav {
+    background-color: #1a1a1a;
+}
+
+.dark-mode .nav-search input {
+    background-color: #444;
+    color: white;
+}
+
+
+
+
+
+/* Sticky layout wrapper */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Footer styles */
+footer {
+    width: 100%;
+    background: linear-gradient(90deg, #ff6a00, #ee0979);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    border-top: 4px solid #fff;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+/* Footer links */
+footer a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffe600;
+}
+
+/* Social media icons */
+.social-icons a {
+    color: white;
+    margin: 0 8px;
+    font-size: 20px;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+    color: #ffe600;
+}
+
+/* ✅ Dark mode support */
+.dark-mode footer {
+    background: linear-gradient(to right, #3a3a5d, #1e1e2f);
+    color: #ddd;
+    border-top: 5px solid #444;
+}
+
+.dark-mode footer a {
+    color: #ccc;
+}
+
+.dark-mode footer a:hover {
+    color: #ffcc00;
+}
+
+.dark-mode .social-icons a {
+    color: #ccc;
+}
+
+.dark-mode .social-icons a:hover {
+    color: #ffcc00;
+}
+
+/* ✅ Responsive footer */
+@media (max-width: 600px) {
+    footer {
+        padding: 20px 10px;
+        font-size: 14px;
+    }
+
+    footer a {
+        display: inline-block;
+        margin: 5px;
+    }
+
+    .social-icons a {
+        font-size: 18px;
+        margin: 0 6px;
+    }
+}
+
+/* Responsive font on small screens */
+/* @media (max-width: 600px) {
+    footer {
+        padding: 20px 10px;
+        font-size: 14px;
+    }
+
+    footer a {
+        display: inline-block;
+        margin: 5px;
+    }
+} */
+
+
+
+/* Responsive layout */
+/* @media (max-width: 600px) {
+    footer {
+        font-size: 14px;
+        padding: 20px 10px;
+    }
+} */
+
+
+
+
+/* socila media icons */
+
+.social-icons a {
+    color: white;
+    margin: 0 8px;
+    font-size: 20px;
+    transition: transform 0.3s;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+    color: #ffe600;
+}
+
