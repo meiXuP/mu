@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Directory</title>
+    <link rel="stylesheet" href="user_list.css" />
+</head>
+
+<body>
+    <header>
+        <div class="menu-icon" id="menu-icon">
+            <nav class="nav-menu" id="nav-menu">
+                <a href="/profile/home.html">Home</a>
+                <a href="/message/chat_list.html">Message</a>
+                <a href="/friend/user_list.html" class="active">Friends</a>
+                <a href="/explore/explore.html">Explore</a>
+                <a href="/profile/user_dashboard.html">Dashboard</a>
+            </nav>
+        </div>
+        <input type="text" id="search" placeholder="Search users...">
+        <ul id="suggestions"></ul>
+    </header>
+
+    <main id="user-container"></main>
+
+    <div id="context-menu" class="context-menu">
+        <button id="view-btn">View</button>
+        <button id="chat-btn">Chat</button>
+    </div>
+
+    <script src="user_list.js"></script>
+</body>
+
+</html>
