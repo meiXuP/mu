@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Fetch all users from backend
-  fetch('http://127.0.0.1:5000/api/users')
+  fetch('https://6a99726a09b8.ngrok-free.app/api/users')
     .then(res => res.json())
     .then(users => {
       allUsers = users;
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement("div");
       card.className = "user-card";
       card.innerHTML = `
-        <img class="profile-pic" src="http://127.0.0.1:5000/static/uploads/${user.profile_pic}" />
+        <img class="profile-pic" src="https://6a99726a09b8.ngrok-free.app/static/uploads/${user.profile_pic}" />
         <span>${user.username}</span>
       `;
       card.addEventListener("click", (e) => {
