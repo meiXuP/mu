@@ -6,7 +6,7 @@ if (loginForm) {
         const email = loginForm.querySelector("#email").value;
         const password = loginForm.querySelector("#password").value;
 
-        const response = await fetch("http://127.0.0.1:5000/login", {
+        const response = await fetch("https://6a99726a09b8.ngrok-free.app/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })
@@ -36,7 +36,7 @@ if (otpForm) {
         const email = localStorage.getItem("verify_email");
         const otp = otpForm.querySelector("#otp").value;
 
-        const response = await fetch("http://127.0.0.1:5000/verify-otp", {
+        const response = await fetch("https://6a99726a09b8.ngrok-free.app/verify-otp", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, otp })
@@ -57,7 +57,7 @@ if (otpForm) {
     if (resendBtn) {
         resendBtn.addEventListener("click", async () => {
             const email = localStorage.getItem("verify_email");
-            const response = await fetch("http://127.0.0.1:5000/resend-otp", {
+            const response = await fetch("https://6a99726a09b8.ngrok-free.app/resend-otp", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email })
@@ -74,7 +74,7 @@ if (forgotForm) {
     forgotForm.addEventListener("submit", async function (e) {
         e.preventDefault();
         const email = forgotForm.querySelector("#email").value;
-        const response = await fetch("http://127.0.0.1:5000/forgot-password", {
+        const response = await fetch("https://6a99726a09b8.ngrok-free.app/forgot-password", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email })
@@ -99,7 +99,7 @@ if (resetForm) {
         const otp = resetForm.querySelector("#otp").value;
         const new_password = resetForm.querySelector("#new_password").value;
 
-        const response = await fetch("http://127.0.0.1:5000/reset-password", {
+        const response = await fetch("https://6a99726a09b8.ngrok-free.app/reset-password", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, otp, new_password })
