@@ -78,7 +78,7 @@ document.getElementById('logout').addEventListener('click', function() {
         if (response.ok) {
             // alert('You have logged out.');
             localStorage.clear(); // optional: clear saved data
-            window.location.href = 'https://meixup.github.io/mu/index.html'; // redirect to login
+            window.location.href = 'https://chat.meixup.in'; // redirect to login
         } else {
             alert('Logout failed. Please try again.');
         }
