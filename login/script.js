@@ -22,7 +22,7 @@ if (loginForm) {
                 // Save email and username in localStorage (or sessionStorage)
                 localStorage.setItem("email", user.email);
                 localStorage.setItem("username", user.username); // Optional
-                window.location.href = "profile/home.html";
+                window.location.href = "https://meixup.github.io/mu/profile/home.html";
             }
         }
     });
@@ -47,7 +47,7 @@ if (otpForm) {
 
         if (result.status === "success") {
             localStorage.removeItem("verify_email");
-            window.location.href = "profile/home.html";
+            window.location.href = "https://meixup.github.io/mu/profile/home.html";
         }
     });
 
@@ -85,7 +85,7 @@ if (forgotForm) {
             // Store email in localStorage for OTP verification use
             localStorage.setItem("verify_email", email);
             // Redirect to OTP verification page
-            window.location.href = "reset_password.html";
+            window.location.href = "https://meixup.github.io/mu/reset_password.html";
         }
     });
 }
@@ -110,7 +110,7 @@ if (resetForm) {
 
         if (result.status === "success") {
             localStorage.removeItem("verify_email");
-            window.location.href = "login/login.html";
+            window.location.href = "https://meixup.github.io/mu/login/login.html";
         }
     });
 }
