@@ -9,13 +9,13 @@ const isActive = localStorage.getItem("chatWithUserActive"); // optional
 // Fallback if data is missing
 if (!currentUser || !selectedUser || !profilePic) {
   alert("User info missing. Redirecting to messages page...");
-  window.location.href = "/message/chat_list.html";
+  window.location.href = "https://meixup.github.io/mu/message/chat_list.html";
 }
 
 // Set header display
 const userImg = document.getElementById("chat-user-pic");
 document.getElementById("chat-username").innerText = selectedUser;
-userImg.src = `http://127.0.0.1:5000/static/uploads/${profilePic}`;
+userImg.src = `https://6a99726a09b8.ngrok-free.app/static/uploads/${profilePic}`;
 
 // Add glow if user is active (optional)
 if (isActive === "true") {
