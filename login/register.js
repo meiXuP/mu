@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (result.status === "success") {
         const email = formData.get("email");
         localStorage.setItem("verify_email", email);
-        window.location.href = "verify_otp.html";
+        window.location.href = "https://meixup.github.io/mu/login/verify_otp.html";
       }else {
         alert("⚠️ " + (result.message || "Registration failed"));
       }
