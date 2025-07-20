@@ -1,0 +1,89 @@
+document.addEventListener("DOMContentLoaded", () => {
+    const email = localStorage.getItem("email");
+    console.log("📦 Email from storage:", email);
+
+    if (!email) {
+        alert("Not logged in");
+        window.location.href = "/login/login.html";
+        return;
+    }
+
+    fetch(`http://127.0.0.1:5000/api/user/by-email?email=${encodeURIComponent(email)}`, {
+        method: "GET",
+        credentials: "include"
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("✅ API Response:", data);
+        window.userData = data; // Optional: for debugging in console
+
+        if (data.success) {
+            const user = data.user;
+
+            // Update DOM with user info
+            document.getElementById("user-name").textContent = user[0];
+            document.getElementById("user-email").textContent = user[1];
+            document.getElementById("user-gender").textContent = user[2];
+            document.getElementById("user-age").textContent = user[3];
+            document.getElementById("user-created").textContent = new Date(user[5]).toDateString();
+            document.getElementById("profile-pic").src = `http://127.0.0.1:5000/static/uploads/${user[4]}`;
+
+        } else {
+            alert("User not found.");
+        }
+    })
+    .catch(err => {
+        console.error("❌ Fetch error:", err);
+        alert("Something went wrong. Please try again.");
+    });
+});
+
+
+
+
+const toggle = document.getElementById('modeToggle');
+
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+
+  // Save preference
+  const isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+});
+
+// Load saved preference on start
+window.onload = () => {
+  const theme = localStorage.getItem('theme');
+  if (theme === 'dark') {
+    document.body.classList.add('dark-mode');
+  }
+};
+
+
+
+
+document.getElementById('logout').addEventListener('click', function() {
+    alert('You will be logged out.');
+    fetch('http://127.0.0.1:5000/logout', {
+        method: 'POST',
+        credentials: 'include', // important if using cookies/sessions
+        headers: {
+            'Content-Type': 'application/json'
+        }
+        
+    })
+    
+    .then(response => {
+        if (response.ok) {
+            // alert('You have logged out.');
+            localStorage.clear(); // optional: clear saved data
+            window.location.href = 'index.html'; // redirect to login
+        } else {
+            alert('Logout failed. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred during logout.');
+    });
+});
