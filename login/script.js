@@ -22,7 +22,7 @@ if (loginForm) {
                 // Save email and username in localStorage (or sessionStorage)
                 localStorage.setItem("email", user.email);
                 localStorage.setItem("username", user.username); // Optional
-                window.location.href = "/profile/home.html";
+                window.location.href = "https://meixup.github.io/mu/profile/home.html";
             }
         }
     });
