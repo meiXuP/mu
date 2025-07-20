@@ -1,0 +1,196 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+header {
+  padding: 20px;
+  background: rgba(20, 20, 20, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+#search {
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  width: 250px;
+  background-color: #222;
+  color: #0ff;
+  box-shadow: 0 0 10px #0ff;
+}
+
+#suggestions {
+  position: absolute;
+  top: 60px;
+  left: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #111;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #0ff;
+  z-index: 100;
+  display: none;
+}
+
+#suggestions li {
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#suggestions li:hover {
+  background-color: #222;
+}
+
+#user-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.user-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.user-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #0ff;
+}
+
+.user-card img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  border: 2px solid #0ff;
+  margin-bottom: 10px;
+}
+
+.user-card span {
+  display: block;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #0ff;
+}
+
+/* Hamburger Menu */
+.menu-icon {
+  width: 30px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 20px;
+}
+
+.menu-icon div {
+  height: 4px;
+  background: #0ff;
+  border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-icon.open div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-icon.open div:nth-child(2) {
+  opacity: 0;
+}
+.menu-icon.open div:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+
+
+
+
+
+
+
+
+
+.context-menu {
+  position: absolute;
+  display: none;
+  background: #111;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #0ff;
+  z-index: 1000;
+  animation: popin 0.3s ease-out;
+}
+
+.context-menu button {
+  display: block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 8px 12px;
+  background: #0ff;
+  border: none;
+  border-radius: 5px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.context-menu button:hover {
+  background: #00ffff99;
+}
+
+@keyframes popin {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Animated Nav Bar */
+.nav-menu {
+  display: flex;
+  gap: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.nav-menu a {
+  color: #0ff;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #0ff;
+  transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
