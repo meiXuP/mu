@@ -1,0 +1,65 @@
+body {
+    background-color: #0f0f0f;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+}
+
+.user-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00ffcc44;
+    transition: all 0.3s ease-in-out;
+    animation: glowPulse 2s infinite ease-in-out;
+    position: relative;
+}
+
+.user:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px #00ffee, 0 0 30px #00ffee;
+    background: #1f1f1f;
+}
+
+.user img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #00ffee;
+    box-shadow: 0 0 8px #00ffee;
+    transition: transform 0.3s ease;
+}
+
+.user span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #00ffee;
+    text-shadow: 0 0 5px #00ffee;
+}
+
+/* Glowing animation */
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 10px #00ffcc44;
+    }
+    50% {
+        box-shadow: 0 0 20px #00ffee, 0 0 25px #00ffee;
+    }
+    100% {
+        box-shadow: 0 0 10px #00ffcc44;
+    }
+}
