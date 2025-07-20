@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const formData = new FormData(registerForm);
 
-    fetch("http://127.0.0.1:5000/register", {
+    fetch("https://6a99726a09b8.ngrok-free.app/register", {
       method: "POST",
       body: formData
     })
