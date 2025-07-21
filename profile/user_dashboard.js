@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("user-email").textContent = user[1];
             document.getElementById("username").textContent = user[2];
             document.getElementById("user-gender").textContent = user[3];
-            document.getElementById("user-age").textContent = user.[4];
+            document.getElementById("user-age").textContent = user[4];
             document.getElementById("user-created").textContent = new Date(user[6]).toDateString();
             document.getElementById("profile-pic").src = `https://6a99726a09b8.ngrok-free.app/static/uploads/${user[5]}`;
         } else {
