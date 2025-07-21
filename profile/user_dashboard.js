@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    fetch(`https://6a99726a09b8.ngrok-free.app/api/user/by-email?email=${encodeURIComponent(email)}`, {
+    fetch(`https://d7b19d3ad71f.ngrok-free.app/api/user/by-email?email=${encodeURIComponent(email)}`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("user-gender").textContent = user[3] || 'N/A';
             document.getElementById("user-age").textContent = user[4] || 'N/A';
             document.getElementById("user-created").textContent = new Date(user[6]).toDateString() || 'N/A';
-            document.getElementById("profile-pic").src = `https://6a99726a09b8.ngrok-free.app/static/uploads/${user[5]}`;
+            document.getElementById("profile-pic").src = `https://d7b19d3ad71f.ngrok-free.app/static/uploads/${user[5]}`;
         } else {
             alert("User not found.");
             localStorage.clear();
@@ -59,7 +59,7 @@ window.onload = () => {
 // 🚪 Logout
 document.getElementById('logout')?.addEventListener('click', () => {
     alert('You will be logged out.');
-    fetch('https://6a99726a09b8.ngrok-free.app/logout', {
+    fetch('https://d7b19d3ad71f.ngrok-free.app/logout', {
         method: 'POST',
         credentials: 'include',
         headers: {
