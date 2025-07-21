@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fetch(`https://6a99726a09b8.ngrok-free.app/api/user/by-email?email=${encodeURIComponent(email)}`, {
         method: "GET",
-        credentials: "include", // important for session-based login
+        credentials: "include",
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -19,17 +19,15 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(res => res.json())
     .then(data => {
         console.log("✅ API Response:", data);
-        window.userData = data;
         if (data.success) {
             const user = data.user;
 
-            // Update DOM
-            document.getElementById("user-name").textContent = user[0];
-            document.getElementById("user-email").textContent = user[1];
-            document.getElementById("username").textContent = user[2];
-            document.getElementById("user-gender").textContent = user[3];
-            document.getElementById("user-age").textContent = user[4];
-            document.getElementById("user-created").textContent = new Date(user[6]).toDateString();
+            document.getElementById("user-name").textContent = user[0] || 'N/A';
+            document.getElementById("user-email").textContent = user[1] || 'N/A';
+            document.getElementById("username").textContent = user[2] || 'N/A';
+            document.getElementById("user-gender").textContent = user[3] || 'N/A';
+            document.getElementById("user-age").textContent = user[4] || 'N/A';
+            document.getElementById("user-created").textContent = new Date(user[6]).toDateString() || 'N/A';
             document.getElementById("profile-pic").src = `https://6a99726a09b8.ngrok-free.app/static/uploads/${user[5]}`;
         } else {
             alert("User not found.");
@@ -45,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // 🌓 Theme toggle
 const toggle = document.getElementById('modeToggle');
-toggle.addEventListener('click', () => {
+toggle?.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
     localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
 });
@@ -59,9 +57,8 @@ window.onload = () => {
 };
 
 // 🚪 Logout
-document.getElementById('logout').addEventListener('click', function () {
+document.getElementById('logout')?.addEventListener('click', () => {
     alert('You will be logged out.');
-
     fetch('https://6a99726a09b8.ngrok-free.app/logout', {
         method: 'POST',
         credentials: 'include',
@@ -72,13 +69,13 @@ document.getElementById('logout').addEventListener('click', function () {
     .then(response => {
         if (response.ok) {
             localStorage.clear();
-            window.location.href = 'https://meixup.github.io/mu/login/login.html'; // 🔄 Correct redirection
+            window.location.href = 'https://meixup.github.io/mu/login/login.html';
         } else {
             alert('Logout failed. Please try again.');
         }
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error('❌ Logout error:', error);
         alert('An error occurred during logout.');
     });
 });
