@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(res => res.json())
     .then(data => {
         console.log("✅ API Response:", data);
+        window.userData = data;
         if (data.success) {
             const user = data.user;
 
