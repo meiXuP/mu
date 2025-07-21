@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fetch(`https://6a99726a09b8.ngrok-free.app/api/user/by-email?email=${encodeURIComponent(email)}`, {
         method: "GET",
-        // credentials: "include", // important for session-based login
+        credentials: "include", // important for session-based login
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
@@ -23,13 +23,13 @@ document.addEventListener("DOMContentLoaded", () => {
             const user = data.user;
 
             // Update DOM
-            document.getElementById("user-name").textContent = user.nickname;
-            document.getElementById("user-email").textContent = user.email;
-            document.getElementById("username").textContent = user.username;
-            document.getElementById("user-gender").textContent = user.gender;
-            document.getElementById("user-age").textContent = user.age;
-            document.getElementById("user-created").textContent = new Date(user.created_at).toDateString();
-            document.getElementById("profile-pic").src = `https://6a99726a09b8.ngrok-free.app/static/uploads/${user.profile_pic}`;
+            document.getElementById("user-name").textContent = user[0];
+            document.getElementById("user-email").textContent = user[1];
+            document.getElementById("username").textContent = user[2];
+            document.getElementById("user-gender").textContent = user[3];
+            document.getElementById("user-age").textContent = user.[4];
+            document.getElementById("user-created").textContent = new Date(user[6]).toDateString();
+            document.getElementById("profile-pic").src = `https://6a99726a09b8.ngrok-free.app/static/uploads/${user[5]}`;
         } else {
             alert("User not found.");
             localStorage.clear();
