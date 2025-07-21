@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fetch(`https://6a99726a09b8.ngrok-free.app/api/user/by-email?email=${encodeURIComponent(email)}`, {
         method: "GET",
-        credentials: "include", // important for session-based login
+        // credentials: "include", // important for session-based login
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
