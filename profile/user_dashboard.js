@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 fetch(`${baseURL}${endpoint}?email=${encodeURIComponent(email)}`, {
         method: "GET",
-        credentials: "include"
+        // credentials: "include"
     })
     .then(res => res.json())
     .then(data => {
