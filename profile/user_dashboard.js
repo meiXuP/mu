@@ -7,9 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "https://meixup.github.io/mu/login/login.html";
         return;
     }
-    const ngrok="https://0aceed31c6b7.ngrok-free.app/api/user/by-email";
 
-    fetch("https://0aceed31c6b7.ngrok-free.app/api/user/by-email?email=${encodeURIComponent(email)}", {
+    const baseURL = "https://0aceed31c6b7.ngrok-free.app";
+    const endpoint = "/api/user/by-email";
+    const emailParam = `?email=${encodeURIComponent(email)}`;
+
+fetch(`${baseURL}${endpoint}${emailParam}`, {
         method: "GET",
         credentials: "include"
     })
