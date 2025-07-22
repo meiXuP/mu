@@ -1,5 +1,3 @@
-const ngrok = 'https://9696eb1c37bc.ngrok-free.app';
-
 document.addEventListener("DOMContentLoaded", () => {
     const email = localStorage.getItem("email");
     console.log("📦 Email from storage:", email);
@@ -10,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    fetch(`${ngrok}/api/user/by-email?email=${encodeURIComponent(email)}`, {
+    fetch("https://0aceed31c6b7.ngrok-free.app/api/user/by-email?email=${encodeURIComponent(email)}", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -30,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("user-gender").textContent = user[3] || 'N/A';
             document.getElementById("user-age").textContent = user[4] || 'N/A';
             document.getElementById("user-created").textContent = new Date(user[6]).toDateString() || 'N/A';
-            document.getElementById("profile-pic").src = `${ngrok}/static/uploads/${user[5]}`;
+            document.getElementById("profile-pic").src = `https://0aceed31c6b7.ngrok-free.app/static/uploads/${user[5]}`;
         } else {
             alert("User not found.");
             localStorage.clear();
