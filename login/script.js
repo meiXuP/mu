@@ -9,7 +9,6 @@ if (loginForm) {
         const response = await fetch("https://9696eb1c37bc.ngrok-free.app/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            // credentials: "include",  // 👈 Required if sending cookies
             body: JSON.stringify({ email, password })
         });
 
@@ -23,11 +22,15 @@ if (loginForm) {
                 // Save email and username in localStorage (or sessionStorage)
                 localStorage.setItem("email", user.email);
                 localStorage.setItem("username", user.username); // Optional
+                localStorage.setItem("profile_pic", user.profile_pic);
                 window.location.href = "https://meixup.github.io/mu/profile/user_dashboard.html";
             }
         }
     });
 }
+
+
+
 
 // VERIFY OTP
 const otpForm = document.getElementById("otpForm");
@@ -47,10 +50,7 @@ if (otpForm) {
         alert(result.message);
 
         if (result.status === "success") {
-            // Save email and username in localStorage (or sessionStorage)
-            localStorage.setItem("email", user.email);
-            // localStorage.setItem("username", user.username); // Optional
-            // localStorage.removeItem("verify_email");
+            localStorage.removeItem("verify_email");
             window.location.href = "https://meixup.github.io/mu/profile/user_dashboard.html";
         }
     });
@@ -89,7 +89,7 @@ if (forgotForm) {
             // Store email in localStorage for OTP verification use
             localStorage.setItem("verify_email", email);
             // Redirect to OTP verification page
-            window.location.href = "https://meixup.github.io/mu/reset_password.html";
+            window.location.href = "https://meixup.github.io/mu/login/reset_password.html";
         }
     });
 }
