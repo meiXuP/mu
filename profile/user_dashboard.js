@@ -31,9 +31,24 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("user-gender").textContent = user[3];
             document.getElementById("user-age").textContent = user[4];
             document.getElementById("user-created").textContent = new Date(user[6]).toDateString();
-            const profilePicUrl = `https://0aceed31c6b7.ngrok-free.app/static/uploads/${user[5]}`;
-            document.getElementById('profile-pic').src = profilePicUrl;
-
+            const ppi = user[5];
+            fetch("https://0aceed31c6b7.ngrok-free.app/static/uploads", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ ppi })
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log("✅ PPI Response:", data);
+                window.userData = data; // Optional: for debugging in console
+                if (data.success) {
+                    const ppiu = data.ppiu;
+                    document.getElementById("profile-pic").src = ppiu[0];
+                } else {
+                    document.getElementById("profile-pic").src = "https://0aceed31c6b7.ngrok-free.app/static/uploads/default.png";
+                }
 
         } else {
             alert("Login failed: " + (data.message || "Unknown error"));
