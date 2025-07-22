@@ -1,3 +1,5 @@
+const ngrok = 'https://9696eb1c37bc.ngrok-free.app';
+
 document.addEventListener('DOMContentLoaded', function () {
   const uploadBtn = document.getElementById("upload-btn");
   const uploadInput = document.getElementById("uploadImage");
@@ -102,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const formData = new FormData(registerForm);
 
-    fetch("https://6a99726a09b8.ngrok-free.app/register", {
+    fetch("${ngrok}/register", {
       method: "POST",
       body: formData
     })
