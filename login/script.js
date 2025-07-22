@@ -1,4 +1,4 @@
-const ngrok = 'https://9696eb1c37bc.ngrok-free.app';
+const ngrok = `https://9696eb1c37bc.ngrok-free.app`;
 
 // LOGIN
 const loginForm = document.getElementById("loginForm");
