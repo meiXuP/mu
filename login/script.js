@@ -8,7 +8,7 @@ if (loginForm) {
         const email = loginForm.querySelector("#email").value;
         const password = loginForm.querySelector("#password").value;
 
-        const response = await fetch(`${ngrok}/login`, {
+        const response = await fetch(`https://9696eb1c37bc.ngrok-free.app/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",  // 👈 Required if sending cookies
