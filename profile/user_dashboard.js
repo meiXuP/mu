@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("created_at").textContent = user[6];
 
             // Profile picture
-            document.getElementById("profile-pic").src = `https://0aceed31c6b7.ngrok-free.app/static/uploads/${user[5}`;
+            document.getElementById("profile-pic").src = `https://0aceed31c6b7.ngrok-free.app/static/uploads/${user[5]}`;
         } else {
             alert("Login failed: " + (data.message || "Unknown error"));
             window.location.href = "https://meixup.github.io/mu/login/login.html";
