@@ -1,4 +1,4 @@
-const ngrok = 'https://9696eb1c37bc.ngrok-free.app';
+const ngrok = 'https://0aceed31c6b7.ngrok-free.app';
 
 document.addEventListener('DOMContentLoaded', function () {
   const uploadBtn = document.getElementById("upload-btn");
