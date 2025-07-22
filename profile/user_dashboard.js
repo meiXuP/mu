@@ -4,11 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("📦 Email from storage:", email);
 
-    if (!email) {
-        alert("Not logged in");
-        window.location.href = "https://meixup.github.io/mu/login/login.html";
-        return;
-    }
+    // if (!email) {
+    //     alert("Not logged in");
+    //     window.location.href = "https://meixup.github.io/mu/login/login.html";
+    //     return;
+    // }
 
     fetch("https://0aceed31c6b7.ngrok-free.app/api/user/by-email", {
         method: "POST",
