@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     const email = localStorage.getItem("email");
-    const password = localStorage.getItem("password"); // assumed you stored it earlier
+    // const password = localStorage.getItem("password"); // assumed you stored it earlier
 
     console.log("📦 Email from storage:", email);
 
-    if (!email || !password) {
+    if (!email) {
         alert("Not logged in");
         window.location.href = "https://meixup.github.io/mu/login/login.html";
         return;
