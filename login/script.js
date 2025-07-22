@@ -1,3 +1,5 @@
+const ngrok = 'https://9696eb1c37bc.ngrok-free.app';
+
 // LOGIN
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {
@@ -6,7 +8,7 @@ if (loginForm) {
         const email = loginForm.querySelector("#email").value;
         const password = loginForm.querySelector("#password").value;
 
-        const response = await fetch("https://6a99726a09b8.ngrok-free.app/login", {
+        const response = await fetch("${ngrok}/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",  // 👈 Required if sending cookies
@@ -37,7 +39,7 @@ if (otpForm) {
         const email = localStorage.getItem("verify_email");
         const otp = otpForm.querySelector("#otp").value;
 
-        const response = await fetch("https://6a99726a09b8.ngrok-free.app/verify-otp", {
+        const response = await fetch(`${ngrok}/verify-otp`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, otp })
@@ -47,7 +49,10 @@ if (otpForm) {
         alert(result.message);
 
         if (result.status === "success") {
-            localStorage.removeItem("verify_email");
+            // Save email and username in localStorage (or sessionStorage)
+            localStorage.setItem("email", user.email);
+            // localStorage.setItem("username", user.username); // Optional
+            // localStorage.removeItem("verify_email");
             window.location.href = "https://meixup.github.io/mu/profile/home.html";
         }
     });
@@ -58,7 +63,7 @@ if (otpForm) {
     if (resendBtn) {
         resendBtn.addEventListener("click", async () => {
             const email = localStorage.getItem("verify_email");
-            const response = await fetch("https://6a99726a09b8.ngrok-free.app/resend-otp", {
+            const response = await fetch(`${ngrok}/resend-otp`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email })
@@ -75,7 +80,7 @@ if (forgotForm) {
     forgotForm.addEventListener("submit", async function (e) {
         e.preventDefault();
         const email = forgotForm.querySelector("#email").value;
-        const response = await fetch("https://6a99726a09b8.ngrok-free.app/forgot-password", {
+        const response = await fetch(`${ngrok}/forgot-password`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email })
@@ -100,7 +105,7 @@ if (resetForm) {
         const otp = resetForm.querySelector("#otp").value;
         const new_password = resetForm.querySelector("#new_password").value;
 
-        const response = await fetch("https://6a99726a09b8.ngrok-free.app/reset-password", {
+        const response = await fetch(`${ngrok}/reset-password`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, otp, new_password })
