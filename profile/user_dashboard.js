@@ -12,35 +12,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const endpoint = "/api/user/by-email";
     // const emailParam = `?email=${encodeURIComponent(email)}`;
 
-fetch(`${baseURL}${endpoint}?email=${encodeURIComponent(email)}`, {
-        method: "GET",
-        // credentials: "include"
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log("✅ API Response:", data);
-        window.userData = data; // Optional: for debugging in console
+fetch("https://your-ngrok-url/api/user/by-email", {
+    method: "GET",
+    credentials: "include"  // ✅ Allow session cookie
+})
+.then(res => res.json())
+.then(data => {
+    if (data.success) {
+        const user = data.user;
 
-        if (data.success) {
-            const user = data.user;
+        document.getElementById("nickname").textContent = user.nickname;
+        document.getElementById("email").textContent = user.email;
+        document.getElementById("username").textContent = user.username;
+        document.getElementById("gender").textContent = user.gender;
+        document.getElementById("age").textContent = user.age;
+        document.getElementById("created_at").textContent = user.created_at;
 
-            // Update DOM with user info
-            document.getElementById("user-name").textContent = user[0];
-            document.getElementById("user-email").textContent = user[1];
-            document.getElementById("username").textContent = user[2];
-            document.getElementById("user-gender").textContent = user[3];
-            document.getElementById("user-age").textContent = user[4];
-            document.getElementById("user-created").textContent = new Date(user[6]).toDateString();
-            document.getElementById("profile-pic").src = "https://0aceed31c6b7.ngrok-free.app/static/uploads/${user[5]}";
-
-        } else {
-            alert("User not found.");
-        }
-    })
-    .catch(err => {
-        console.error("❌ Fetch error:", err);
-        alert("Something went wrong. Please try again.");
-    });
+        document.getElementById("profile-pic").src = `https://your-ngrok-url/static/uploads/${user.profile_pic}`;
+    } else {
+        alert("User not logged in.");
+        window.location.href = "https://meixup.github.io/mu/login/login.html";  // redirect if not logged in
+    }
+})
+.catch(err => {
+    console.error("Fetch error:", err);
+});
 });
 
 
