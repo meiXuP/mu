@@ -1,17 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>uc</title>
-</head>
-<body>
+    <title>Global Chat</title>
+    <link rel="stylesheet" href="global_chat.css">
+    <style>
+        .user-info {
+    display: flex;
+    align-items: center;       /* Vertically center items */
+    gap: 10px;                 /* Space between image and text */
+    margin-top: 10px;
+}
 
-    <h1>
-        This page is under construction
-        you can go directly to <a href="user_dashboard.html">user dashboard</a>
-    </h1>
-    
-    
+#profile-pic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;        /* Makes it circular */
+    object-fit: cover;         /* Keeps image from stretching */
+    border: 2px solid #ccc;    /* Optional border */
+}
+
+#username {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+    </style>
+
+</head>
+
+<body>
+    <nav class="main-nav">
+        <div class="nav-logo">meiXuP</div>
+        <ul class="nav-links">
+            <li><a href="/frontend/profile/home.html" class="active">Home</a></li>
+            <li><a href="/frontend/message/chat_list.html">Messages</a></li>
+            <li><a href="/frontend/friend/user_list.html">Friends</a></li>
+            <li><a href="/frontend/profile/user_dashboard.html">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="chat-user-info">
+                <!-- <img id="chat-user-pic" class="message-avatar" /> -->
+                <h2 id="chat-username" class="chat-title">Global Chat</h2>
+                <!-- <span class="unread-count">0</span> -->
+            </div>
+        </div>
+
+        <div class="chat-main">
+            <div class="chat-sidebar">
+                <h2>Active Users</h2>
+                <div id="user-list"></div> <!-- Users will be injected here -->
+                <div id="context-menu" class="context-menu">
+                    <button id="view-btn">👤 View Profile</button>
+                    <button id="chat-btn">💬 Chat</button>
+                </div>
+            </div>
+
+            <div class="chat-content">
+                <div id="chat-messages" class="chat-messages"></div>
+
+                <div class="chat-input">
+                    <input type="text" id="msg-input" placeholder="Type your message..." >
+                    <button id="mic-btn">🎤</button>
+                    <button id="send-btn">➤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="global_chat.js"></script>
 </body>
+
 </html>
