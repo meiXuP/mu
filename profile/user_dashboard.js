@@ -8,31 +8,29 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    fetch("https://0aceed31c6b7.ngrok-free.app/api/user/by-email?email=${encodeURIComponent(email)}", {
+    fetch(`https://0aceed31c6b7.ngrok-free.app/api/user/by-email?email=${encodeURIComponent(email)}`, {
         method: "GET",
-        credentials: "include",
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-        }
+        credentials: "include"
     })
     .then(res => res.json())
     .then(data => {
         console.log("✅ API Response:", data);
+        window.userData = data; // Optional: for debugging in console
+
         if (data.success) {
             const user = data.user;
 
-            document.getElementById("user-name").textContent = user[0] || 'N/A';
-            document.getElementById("user-email").textContent = user[1] || 'N/A';
-            document.getElementById("username").textContent = user[2] || 'N/A';
-            document.getElementById("user-gender").textContent = user[3] || 'N/A';
-            document.getElementById("user-age").textContent = user[4] || 'N/A';
-            document.getElementById("user-created").textContent = new Date(user[6]).toDateString() || 'N/A';
+            // Update DOM with user info
+            document.getElementById("user-name").textContent = user[0];
+            document.getElementById("user-email").textContent = user[1];
+            document.getElementById("username").textContent = user[2];
+            document.getElementById("user-gender").textContent = user[3];
+            document.getElementById("user-age").textContent = user[4];
+            document.getElementById("user-created").textContent = new Date(user[6]).toDateString();
             document.getElementById("profile-pic").src = `https://0aceed31c6b7.ngrok-free.app/static/uploads/${user[5]}`;
+
         } else {
             alert("User not found.");
-            localStorage.clear();
-            window.location.href = "https://meixup.github.io/mu/login/login.html";
         }
     })
     .catch(err => {
@@ -41,41 +39,53 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// 🌓 Theme toggle
+
+
+
 const toggle = document.getElementById('modeToggle');
-toggle?.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+
+  // Save preference
+  const isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
 
-// 💡 Load theme preference
+// Load saved preference on start
 window.onload = () => {
-    const theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
-        document.body.classList.add('dark-mode');
-    }
+  const theme = localStorage.getItem('theme');
+  if (theme === 'dark') {
+    document.body.classList.add('dark-mode');
+  }
 };
 
-// 🚪 Logout
-document.getElementById('logout')?.addEventListener('click', () => {
+
+
+
+document.getElementById('logout').addEventListener('click', function() {
     alert('You will be logged out.');
-    fetch('https://d7b19d3ad71f.ngrok-free.app/logout', {
+    fetch("https://0aceed31c6b7.ngrok-free.app", {
         method: 'POST',
-        credentials: 'include',
+        credentials: 'include', // important if using cookies/sessions
         headers: {
             'Content-Type': 'application/json'
         }
+        
     })
+    
     .then(response => {
         if (response.ok) {
-            localStorage.clear();
-            window.location.href = 'https://meixup.github.io/mu/index.html';
+            // alert('You have logged out.');
+            localStorage.clear(); // optional: clear saved data
+            window.location.href = 'https://meixup.github.io/mu/index.html'; // redirect to login
         } else {
             alert('Logout failed. Please try again.');
         }
     })
     .catch(error => {
-        console.error('❌ Logout error:', error);
+        console.error('Error:', error);
         alert('An error occurred during logout.');
     });
 });
+
