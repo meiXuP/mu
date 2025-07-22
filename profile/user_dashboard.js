@@ -43,8 +43,7 @@ fetch("https://0aceed31c6b7.ngrok-free.app/api/user/by-email", {
     console.error("Fetch error:", err);
     alert("An error occurred. Please try again later.");
 });
-
-
+});
 
 
 const toggle = document.getElementById('modeToggle');
