@@ -1,4 +1,4 @@
-const ngrok = 'https://9696eb1c37bc.ngrok-free.app';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById("user-container");
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // }
 
 // store current user
-  fetch('${ngrok}/api/recent-user')
+  fetch('https://0aceed31c6b7.ngrok-free.app/api/recent-user')
   .then(res => res.json())
   .then(data => {
     localStorage.setItem("username", data.username);
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // Fetch all users from backend
-  fetch('${ngrok}/api/users')
+  fetch('https://0aceed31c6b7.ngrok-free.app/api/users')
     .then(res => res.json())
     .then(users => {
       allUsers = users;
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement("div");
       card.className = "user-card";
       card.innerHTML = `
-        <img class="profile-pic" src="${ngrok}/static/uploads/${user.profile_pic}" />
+        <img class="profile-pic" src="https://0aceed31c6b7.ngrok-free.app/static/uploads/${user.profile_pic}" />
         <span>${user.username}</span>
       `;
       card.addEventListener("click", (e) => {
