@@ -16,7 +16,7 @@ fetch("https://0aceed31c6b7.ngrok-free.app/api/user/by-email", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
-    method: "GET"
+    // method: "GET"
     // credentials: "include"  // ✅ Allow session cookie
 })
 .then(res => res.json())
