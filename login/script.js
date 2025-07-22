@@ -9,7 +9,7 @@ if (loginForm) {
         const response = await fetch("https://9696eb1c37bc.ngrok-free.app/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            credentials: "include",  // 👈 Required if sending cookies
+            // credentials: "include",  // 👈 Required if sending cookies
             body: JSON.stringify({ email, password })
         });
 
