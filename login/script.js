@@ -40,7 +40,7 @@ if (otpForm) {
         const email = localStorage.getItem("verify_email");
         const otp = otpForm.querySelector("#otp").value;
 
-        const response = await fetch("https://9696eb1c37bc.ngrok-free.app/verify-otp", {
+        const response = await fetch("https://0aceed31c6b7.ngrok-free.app/verify-otp", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, otp })
@@ -61,7 +61,7 @@ if (otpForm) {
     if (resendBtn) {
         resendBtn.addEventListener("click", async () => {
             const email = localStorage.getItem("verify_email");
-            const response = await fetch("https://9696eb1c37bc.ngrok-free.app/resend-otp", {
+            const response = await fetch("https://0aceed31c6b7.ngrok-free.app/resend-otp", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email })
@@ -78,7 +78,7 @@ if (forgotForm) {
     forgotForm.addEventListener("submit", async function (e) {
         e.preventDefault();
         const email = forgotForm.querySelector("#email").value;
-        const response = await fetch("https://9696eb1c37bc.ngrok-free.app/forgot-password", {
+        const response = await fetch("https://0aceed31c6b7.ngrok-free.app/forgot-password", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email })
@@ -103,7 +103,7 @@ if (resetForm) {
         const otp = resetForm.querySelector("#otp").value;
         const new_password = resetForm.querySelector("#new_password").value;
 
-        const response = await fetch("https://9696eb1c37bc.ngrok-free.app/reset-password", {
+        const response = await fetch("https://0aceed31c6b7.ngrok-free.app/reset-password", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, otp, new_password })
