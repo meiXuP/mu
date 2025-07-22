@@ -25,15 +25,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const user = data.user;
 
             // Display user data in HTML
-            document.getElementById("nickname").textContent = user.nickname;
-            document.getElementById("email").textContent = user.email;
-            document.getElementById("username").textContent = user.username;
-            document.getElementById("gender").textContent = user.gender;
-            document.getElementById("age").textContent = user.age;
-            document.getElementById("created_at").textContent = user.created_at;
+            document.getElementById("nickname").textContent = user[0];
+            document.getElementById("email").textContent = user[1];
+            document.getElementById("username").textContent = user[2];
+            document.getElementById("gender").textContent = user[3];
+            document.getElementById("age").textContent = user[4];
+            document.getElementById("created_at").textContent = user[6];
 
             // Profile picture
-            document.getElementById("profile-pic").src = `https://0aceed31c6b7.ngrok-free.app/static/uploads/${user.profile_pic}`;
+            document.getElementById("profile-pic").src = `https://0aceed31c6b7.ngrok-free.app/static/uploads/${user[5}`;
         } else {
             alert("Login failed: " + (data.message || "Unknown error"));
             window.location.href = "https://meixup.github.io/mu/login/login.html";
