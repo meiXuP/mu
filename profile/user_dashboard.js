@@ -1,3 +1,5 @@
+const ngrok = 'https://9696eb1c37bc.ngrok-free.app';
+
 document.addEventListener("DOMContentLoaded", () => {
     const email = localStorage.getItem("email");
     console.log("📦 Email from storage:", email);
@@ -8,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    fetch(`https://d7b19d3ad71f.ngrok-free.app/api/user/by-email?email=${encodeURIComponent(email)}`, {
+    fetch(`${ngrok}/api/user/by-email?email=${encodeURIComponent(email)}`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("user-gender").textContent = user[3] || 'N/A';
             document.getElementById("user-age").textContent = user[4] || 'N/A';
             document.getElementById("user-created").textContent = new Date(user[6]).toDateString() || 'N/A';
-            document.getElementById("profile-pic").src = `https://d7b19d3ad71f.ngrok-free.app/static/uploads/${user[5]}`;
+            document.getElementById("profile-pic").src = `${ngrok}/static/uploads/${user[5]}`;
         } else {
             alert("User not found.");
             localStorage.clear();
@@ -69,7 +71,7 @@ document.getElementById('logout')?.addEventListener('click', () => {
     .then(response => {
         if (response.ok) {
             localStorage.clear();
-            window.location.href = 'https://meixup.github.io/mu/login/login.html';
+            window.location.href = 'https://meixup.github.io/mu/index.html';
         } else {
             alert('Logout failed. Please try again.');
         }
