@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById("user-container");
   const search = document.getElementById("search");
@@ -14,58 +12,62 @@ document.addEventListener('DOMContentLoaded', () => {
   let selectedUserPic = "";
   let allUsers = [];
 
-  // Fallback: ensure current user is stored in localStorage
-  // if (!localStorage.getItem("username")) {
-  //   localStorage.setItem("username", allUsers); // Replace this with dynamic value after login
-  // }
-
-// store current user
+  // Store current user
   fetch('https://0aceed31c6b7.ngrok-free.app/api/recent-user')
-  .then(res => res.json())
-  .then(data => {
-    localStorage.setItem("username", data.username);
-  });
+    .then(res => res.json())
+    .then(data => {
+      if (data.username) {
+        localStorage.setItem("username", data.username);
+      }
+    })
+    .catch(err => {
+      console.error("Error fetching current user:", err);
+    });
 
-
-  // Fetch all users from backend
+  // Fetch all users
   fetch('https://0aceed31c6b7.ngrok-free.app/api/users')
     .then(res => res.json())
     .then(users => {
       allUsers = users;
       displayUsers(users);
 
-      // Search Logic
-      search.addEventListener("input", () => {
-        const query = search.value.toLowerCase();
-        const filtered = users.filter(user =>
-          user.username.toLowerCase().includes(query)
-        );
-        showSuggestions(filtered.slice(0, 5));
-      });
+      // Search functionality
+      if (search && suggestions) {
+        search.addEventListener("input", () => {
+          const query = search.value.toLowerCase();
+          const filtered = users.filter(user =>
+            user.username.toLowerCase().includes(query)
+          );
+          showSuggestions(filtered.slice(0, 5));
+        });
 
-      // Click on search suggestion
-      suggestions.addEventListener("click", e => {
-        if (e.target.tagName === "LI") {
-          const username = e.target.textContent;
-          window.location.href = `https://meixup.github.io/mu/friend/user_profile.html?username=${username}`;
-        }
-      });
+        suggestions.addEventListener("click", e => {
+          if (e.target.tagName === "LI") {
+            const username = e.target.textContent;
+            window.location.href = `https://meixup.github.io/mu/friend/user_profile.html?username=${username}`;
+          }
+        });
+      }
+    })
+    .catch(err => {
+      console.error("Error fetching users:", err);
     });
 
-  // Display all users on screen
+  // Display user cards
   function displayUsers(users) {
+    container.innerHTML = ""; // Clear previous if any
     users.forEach(user => {
       const card = document.createElement("div");
       card.className = "user-card";
       card.innerHTML = `
-        <img class="profile-pic" src="https://0aceed31c6b7.ngrok-free.app/static/uploads/${user.profile_pic}" />
+        <img class="profile-pic" src="https://0aceed31c6b7.ngrok-free.app/static/uploads/${user.profile_pic}" alt="${user.username}'s profile picture" />
         <span>${user.username}</span>
       `;
       card.addEventListener("click", (e) => {
         selectedUsername = user.username;
         selectedUserPic = user.profile_pic;
 
-        // Show context menu at cursor
+        // Position and show context menu
         contextMenu.style.top = `${e.clientY}px`;
         contextMenu.style.left = `${e.clientX}px`;
         contextMenu.style.display = 'block';
@@ -74,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Show matching usernames
+  // Show search suggestions
   function showSuggestions(users) {
     suggestions.innerHTML = "";
     if (users.length === 0 || search.value.trim() === "") {
@@ -89,19 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
     suggestions.style.display = "block";
   }
 
-
-
-
-  
-  // View profile button click
-  viewBtn.addEventListener("click", () => {
+  // View profile
+  viewBtn?.addEventListener("click", () => {
     if (selectedUsername) {
       window.location.href = `https://meixup.github.io/mu/friend/user_profile.html?username=${selectedUsername}`;
     }
   });
 
-  // Chat button click
-  chatBtn.addEventListener("click", () => {
+  // Start chat
+  chatBtn?.addEventListener("click", () => {
     if (selectedUsername && selectedUserPic) {
       localStorage.setItem("chatWithUser", selectedUsername);
       localStorage.setItem("chatWithUserPic", selectedUserPic);
@@ -109,16 +107,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Hide context menu if clicked outside
+  // Hide context menu on outside click
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".user-card") && !e.target.closest("#context-menu")) {
       contextMenu.style.display = "none";
     }
   });
 
-  // Hamburger menu animation
-  menu.addEventListener("click", () => {
+  // Hamburger menu toggle
+  menu?.addEventListener("click", () => {
     menu.classList.toggle("open");
-    nav.classList.toggle("active");
+    nav?.classList.toggle("active");
   });
 });
