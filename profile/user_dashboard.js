@@ -8,11 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    const baseURL = "https://0aceed31c6b7.ngrok-free.app";
-    const endpoint = "/api/user/by-email";
+    // const baseURL = "https://0aceed31c6b7.ngrok-free.app";
+    // const endpoint = "/api/user/by-email";
     // const emailParam = `?email=${encodeURIComponent(email)}`;
 
-fetch("https://your-ngrok-url/api/user/by-email", {
+fetch("https://0aceed31c6b7.ngrok-free.app/api/user/by-email", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
