@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const baseURL = "https://0aceed31c6b7.ngrok-free.app";
     const endpoint = "/api/user/by-email";
-    const emailParam = `?email=${encodeURIComponent(email)}`;
+    // const emailParam = `?email=${encodeURIComponent(email)}`;
 
-fetch(`${baseURL}${endpoint}${emailParam}`, {
+fetch(`${baseURL}${endpoint}?email=${encodeURIComponent(email)}`, {
         method: "GET",
         credentials: "include"
     })
