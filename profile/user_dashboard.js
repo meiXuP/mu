@@ -31,12 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("user-gender").textContent = user[3];
             document.getElementById("user-age").textContent = user[4];
             document.getElementById("user-created").textContent = new Date(user[6]).toDateString();
-            
-            const profilePic = document.getElementById("profile-pic");
-profilePic.src = `https://0aceed31c6b7.ngrok-free.app/static/uploads/${user[5]}`;
-profilePic.onerror = () => {
-    profilePic.src = "https://your-default-image-url.com/default.png";
-};
+            document.getElementById("profile-pic").src = `https://0aceed31c6b7.ngrok-free.app/static/uploads/${user[5]}`;
 
 
         } else {
