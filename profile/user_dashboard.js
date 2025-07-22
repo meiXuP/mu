@@ -31,7 +31,26 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("user-gender").textContent = user[3];
             document.getElementById("user-age").textContent = user[4];
             document.getElementById("user-created").textContent = new Date(user[6]).toDateString();
-            const ppi = user[5];
+
+            const propi = user[5];
+            localStorage.setItem("ppi", propi);
+            
+        } else {
+            alert("Login failed: " + (data.message || "Unknown error"));
+            window.location.href = "https://meixup.github.io/mu/login/login.html";
+        }
+    })
+    .catch(err => {
+        console.error("Fetch error:", err);
+        alert("An error occurred. Please try again later.");
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const ppi = localStorage.getItem("ppi");
+    console.log("📦 Profile pic from storage:", ppi);
+
+
             fetch("https://0aceed31c6b7.ngrok-free.app/static/uploads", {
                 method: "POST",
                 headers: {
@@ -49,17 +68,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else {
                     document.getElementById("profile-pic").src = "https://0aceed31c6b7.ngrok-free.app/static/uploads/default.png";
                 }
-
-        } else {
-            alert("Login failed: " + (data.message || "Unknown error"));
-            window.location.href = "https://meixup.github.io/mu/login/login.html";
-        }
-    })
-    .catch(err => {
+                .catch(err => {
         console.error("Fetch error:", err);
-        alert("An error occurred. Please try again later.");
+        alert("Profile pic not lode.");
     });
 });
+
 
 // 🌙 Light/Dark Mode Toggle
 const toggle = document.getElementById('modeToggle');
