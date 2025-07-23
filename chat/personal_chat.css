@@ -21,6 +21,7 @@ body {
   scrollbar-width: none;
 }
 
+
 .user-list::-webkit-scrollbar {
   display: none;
 }
