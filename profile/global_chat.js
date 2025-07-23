@@ -71,7 +71,7 @@ function loadOnlineUsers() {
                 const userDiv = document.createElement("div");
                 userDiv.className = "user-info";
                 userDiv.innerHTML = `
-                    <img src=`${profilePic}` alt="Profile Picture" />
+                    <img `${profilePic}`/>
                     <h3>${username}</h3>
                     <div class="context-menu">
                         <button onclick="viewUser('${username}')">View</button>
