@@ -67,7 +67,7 @@ document.getElementById('logout').addEventListener('click', function() {
     alert('You will be logged out.');
     fetch('https://backend-q9fm.onrender.com', {
         method: 'POST',
-        // credentials: 'include', // important if using cookies/sessions
+        credentials: 'include', // important if using cookies/sessions
         headers: {
             'Content-Type': 'application/json'
         }
