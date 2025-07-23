@@ -1,5 +1,4 @@
-const ngrok = 'https://9696eb1c37bc.ngrok-free.app';
-const socket = io(ngrok);
+const socket = io("https://backend-q9fm.onrender.com");
 
 // Get current and selected user info from localStorage
 const currentUser = localStorage.getItem("username");
@@ -16,7 +15,7 @@ if (!currentUser || !selectedUser || !profilePic) {
 // Set header display
 const userImg = document.getElementById("chat-user-pic");
 document.getElementById("chat-username").innerText = selectedUser;
-userImg.src = `${ngrok}/static/uploads/${profilePic}`;
+userImg.src = `https://backend-q9fm.onrender.com/static/uploads/${profilePic}`;
 
 // Add glow if user is active (optional)
 if (isActive === "true") {
@@ -29,7 +28,7 @@ socket.emit('join_room', { room: roomId });
 
 // Load chat history
 function loadMessages() {
-  fetch(`${ngrok}/api/messages/${selectedUser}?from=${currentUser}`)
+  fetch(`https://backend-q9fm.onrender.com/api/messages/${selectedUser}?from=${currentUser}`)
     .then(res => res.json())
     .then(messages => {
       const msgContainer = document.getElementById('chat-messages');
@@ -121,7 +120,7 @@ micBtn.addEventListener('click', () => {
 
 // online status
 function updateUserStatus(isActive) {
-  fetch('${ngrok}/api/update-status', {
+  fetch('https://backend-q9fm.onrender.com/api/update-status', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
