@@ -15,7 +15,7 @@ if (!currentUser || !selectedUser || !profilePic) {
 // Set header display
 const userImg = document.getElementById("chat-user-pic");
 document.getElementById("chat-username").innerText = selectedUser;
-userImg.src = `https://res.cloudinary.com/dcfofc9fa/image/upload/v1753271385/profile_pics/${profilePic}`;
+userImg.src = `${profilePic}`;
 
 // Add glow if user is active (optional)
 if (isActive === "true") {
