@@ -8,99 +8,77 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Fetch user data
-    fetch("https://0aceed31c6b7.ngrok-free.app/api/user/by-email", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email })
+    fetch(`https://backend-q9fm.onrender.com/api/user/by-email?email=${encodeURIComponent(email)}`, {
+        method: "GET",
+        credentials: "include"
     })
     .then(res => res.json())
     .then(data => {
         console.log("✅ API Response:", data);
-        window.userData = data;
+        window.userData = data; // Optional: for debugging in console
 
         if (data.success) {
             const user = data.user;
+
+            // Update DOM with user info
             document.getElementById("user-name").textContent = user[0];
             document.getElementById("user-email").textContent = user[1];
             document.getElementById("username").textContent = user[2];
             document.getElementById("user-gender").textContent = user[3];
             document.getElementById("user-age").textContent = user[4];
             document.getElementById("user-created").textContent = new Date(user[6]).toDateString();
+            document.getElementById("profile-pic").src = `https://backend-q9fm.onrender.com/static/uploads/${user[5]}`;
 
-            const propi = user[5];
-            localStorage.setItem("ppi", propi);
-
-            // Fetch profile picture after user info
-            fetchProfilePicture(propi);
         } else {
-            alert("Login failed: " + (data.message || "Unknown error"));
-            window.location.href = "https://meixup.github.io/mu/login/login.html";
+            alert("User not found.");
         }
     })
     .catch(err => {
-        console.error("Fetch error:", err);
-        alert("An error occurred. Please try again later.");
+        console.error("❌ Fetch error:", err);
+        alert("Something went wrong. Please try again.");
     });
-
-    // Load theme preference
-    const theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
-        document.body.classList.add('dark-mode');
-    }
 });
 
-// Fetch profile picture function
-function fetchProfilePicture(ppi) {
-    console.log("📦 Profile pic from storage:", ppi);
 
-    fetch("https://0aceed31c6b7.ngrok-free.app/static/uploads", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ ppi })
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log("✅ PPI Response:", data);
-        if (data.success) {
-            const ppiu = data.ppiu;
-            document.getElementById("profile-pic").src = ppiu[0];
-        } else {
-            document.getElementById("profile-pic").src = "https://0aceed31c6b7.ngrok-free.app/static/uploads/default.png";
-        }
-    })
-    .catch(err => {
-        console.error("Fetch error:", err);
-        alert("Profile picture failed to load.");
-    });
-}
 
-// 🌙 Light/Dark Mode Toggle
+
 const toggle = document.getElementById('modeToggle');
-toggle?.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-    const isDark = document.body.classList.contains('dark-mode');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+
+  // Save preference
+  const isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
 });
 
-// 🚪 Logout
-document.getElementById('logout')?.addEventListener('click', () => {
-    alert('You will be logged out.');
+// Load saved preference on start
+window.onload = () => {
+  const theme = localStorage.getItem('theme');
+  if (theme === 'dark') {
+    document.body.classList.add('dark-mode');
+  }
+};
 
-    fetch("https://0aceed31c6b7.ngrok-free.app/logout", {
+
+
+
+document.getElementById('logout').addEventListener('click', function() {
+    alert('You will be logged out.');
+    fetch('https://backend-q9fm.onrender.com', {
         method: 'POST',
+        credentials: 'include', // important if using cookies/sessions
         headers: {
             'Content-Type': 'application/json'
         }
+        
     })
+    
     .then(response => {
         if (response.ok) {
-            localStorage.clear();
-            window.location.href = 'https://meixup.github.io/mu/index.html';
+            // alert('You have logged out.');
+            localStorage.clear(); // optional: clear saved data
+            window.location.href = 'https://meixup.github.io/mu/index.html'; // redirect to index page
         } else {
             alert('Logout failed. Please try again.');
         }
@@ -110,3 +88,4 @@ document.getElementById('logout')?.addEventListener('click', () => {
         alert('An error occurred during logout.');
     });
 });
+
