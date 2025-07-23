@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let allUsers = [];
 
   // Store current user
-  fetch('https://0aceed31c6b7.ngrok-free.app/api/recent-user')
+  fetch('https://backend-q9fm.onrender.com/api/recent-user')
     .then(res => res.json())
     .then(data => {
       if (data.username) {
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
   // Fetch all users
-  fetch('https://0aceed31c6b7.ngrok-free.app/api/users')
+  fetch('https://backend-q9fm.onrender.com/api/users')
     .then(res => res.json())
     .then(users => {
       allUsers = users;
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement("div");
       card.className = "user-card";
       card.innerHTML = `
-        <img class="profile-pic" src="https://0aceed31c6b7.ngrok-free.app/static/uploads/${user.profile_pic}" alt="${user.username}'s profile picture" />
+        <img class="profile-pic" src="https://backend-q9fm.onrender.com/static/uploads/${user.profile_pic}" alt="${user.username}'s profile picture" />
         <span>${user.username}</span>
       `;
       card.addEventListener("click", (e) => {
