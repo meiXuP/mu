@@ -1,5 +1,3 @@
-const ngrok = 'https://0aceed31c6b7.ngrok-free.app';
-
 document.addEventListener('DOMContentLoaded', function () {
   const uploadBtn = document.getElementById("upload-btn");
   const uploadInput = document.getElementById("uploadImage");
@@ -104,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const formData = new FormData(registerForm);
 
-    fetch("${ngrok}/register", {
+    fetch("https://backend-q9fm.onrender.com/register", {
       method: "POST",
       body: formData
     })
