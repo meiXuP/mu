@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = document.createElement("div");
       card.className = "user-card";
       card.innerHTML = `
-        <img class="profile-pic" src="https://backend-q9fm.onrender.com/static/uploads/${user.profile_pic}" alt="${user.username}'s profile picture" />
+        <img class="profile-pic" src="https://res.cloudinary.com/dcfofc9fa/image/upload/v1753271385/profile_pics/${user.profile_pic}" alt="${user.username}'s profile picture" />
         <span>${user.username}</span>
       `;
       card.addEventListener("click", (e) => {
