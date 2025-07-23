@@ -1,5 +1,4 @@
-/* chat.css */
-
+/* Reset & Base */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -8,19 +7,22 @@ body {
   overflow: hidden;
 }
 
+/* Container */
 .chat-container {
   display: flex;
   height: 100vh;
+  flex-direction: row;
 }
 
 .user-list {
   width: 25%;
+  min-width: 200px;
+  max-width: 300px;
   background: linear-gradient(145deg, #111111, #1e1e1e);
   border-right: 2px solid #333;
   overflow-y: auto;
   scrollbar-width: none;
 }
-
 
 .user-list::-webkit-scrollbar {
   display: none;
@@ -114,7 +116,8 @@ body {
   margin-right: 10px;
 }
 
-#send-btn, #mic-btn {
+#send-btn,
+#mic-btn {
   padding: 10px 15px;
   background: #00ffff;
   color: #000;
@@ -144,8 +147,7 @@ body {
 #preview-modal {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,0.8);
@@ -166,7 +168,7 @@ body {
   display: none;
 }
 
-
+/* Profile Pic + Status */
 .profile-pic {
   width: 50px;
   height: 50px;
@@ -174,43 +176,30 @@ body {
   object-fit: cover;
   margin-right: 10px;
   cursor: pointer;
-  border: 2px solid #00ffff; /* Optional: for glowing border */
-}
-.profile-pic {
+  border: 2px solid #00ffff;
   animation: glow 2s infinite;
-}
-
-@keyframes glow {
-  0% { box-shadow: 0 0 5px #0ff; }
-  50% { box-shadow: 0 0 15px #0ff; }
-  100% { box-shadow: 0 0 5px #0ff; }
-}
-
-.profile-pic {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
   transition: box-shadow 0.3s ease;
 }
 
 .glow {
   box-shadow: 0 0 10px 2px #00ffcc, 0 0 15px 5px #00ffff;
 }
+
 .user-info {
   display: inline-block;
   margin-left: 10px;
   vertical-align: top;
 }
+
 .username {
   font-weight: bold;
   display: block;
 }
+
 .last-seen {
   font-size: 0.8em;
   color: #aaa;
 }
-
-
 
 .status-dot {
   height: 10px;
@@ -226,4 +215,76 @@ body {
 
 .offline {
   background-color: #888;
+}
+
+/* ================================
+   Responsive Design
+================================ */
+
+@media (max-width: 768px) {
+  .chat-container {
+    flex-direction: column;
+  }
+
+  .user-list {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    border-right: none;
+    border-bottom: 2px solid #333;
+  }
+
+  .user-list .user {
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-bottom: none;
+    border-right: 1px solid #333;
+  }
+
+  .user img {
+    margin: 0 0 5px 0;
+  }
+
+  .chat-section {
+    flex: 1;
+    height: calc(100vh - 150px);
+  }
+
+  .chat-messages {
+    padding: 10px;
+  }
+
+  #msg-input {
+    font-size: 14px;
+  }
+
+  #send-btn,
+  #mic-btn {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-header {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .chat-messages .msg {
+    font-size: 14px;
+  }
+
+  .user span {
+    font-size: 14px;
+  }
+
+  #send-btn,
+  #mic-btn {
+    margin-left: 3px;
+  }
 }
