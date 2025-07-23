@@ -1,10 +1,8 @@
-const ngrok = 'https://9696eb1c37bc.ngrok-free.app';
-
 const email = localStorage.getItem("email");
 const username = localStorage.getItem("username");
 const profilePic = localStorage.getItem("profilePic");
 
-const socket = io(ngrok, {
+const socket = io("https://backend-q9fm.onrender.com", {
     query: { email: email }
 });
 
@@ -17,7 +15,7 @@ let messageOffset = 0;
 
 // Load latest 50 messages
 function loadMessages() {
-    fetch(`${ngrok}/api/global_messages?offset=${messageOffset}`)
+    fetch(`https://backend-q9fm.onrender.com/api/global_messages?offset=${messageOffset}`)
         .then(res => res.json())
         .then(messages => {
             if (messages.length === 0) return;
@@ -56,7 +54,7 @@ socket.on("new_message", (data) => appendMessage(data));
 
 // Load online users
 function loadOnlineUsers() {
-    fetch("${ngrok}/api/users/online", {
+    fetch("https://backend-q9fm.onrender.com/api/users/online", {
         method: "GET",
         credentials: "include"
     })
@@ -73,7 +71,7 @@ function loadOnlineUsers() {
                 const userDiv = document.createElement("div");
                 userDiv.className = "user-info";
                 userDiv.innerHTML = `
-                    <img src=`${ngrok}/static/uploads/${profilePic}` alt="Profile Picture" />
+                    <img src="https://backend-q9fm.onrender.com/static/uploads/${profilePic}" alt="Profile Picture" />
                     <h3>${username}</h3>
                     <div class="context-menu">
                         <button onclick="viewUser('${username}')">View</button>
@@ -154,29 +152,6 @@ micBtn.addEventListener('click', () => {
 });
 
 
-
-
-
-
-
-
-// function showContextMenu(x, y) {
-//     contextMenu.style.top = y + "px";
-//     contextMenu.style.left = x + "px";
-//     contextMenu.style.display = "block";
-// }
-
-// document.addEventListener("click", () => {
-//     contextMenu.style.display = "none";
-// });
-
-// document.getElementById("view-btn").onclick = () => {
-//     if (selectedUser) window.location.href = `/frontend/profile/view_profile.html?username=${selectedUser}`;
-// };
-
-// document.getElementById("chat-btn").onclick = () => {
-//     if (selectedUser) window.location.href = `/frontend/chat/personal_chat.html?username=${selectedUser}`;
-// };
 
 socket.on("user_online", loadOnlineUsers);
 socket.on("user_offline", loadOnlineUsers);
