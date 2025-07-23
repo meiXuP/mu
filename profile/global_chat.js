@@ -71,7 +71,7 @@ function loadOnlineUsers() {
                 const userDiv = document.createElement("div");
                 userDiv.className = "user-info";
                 userDiv.innerHTML = `
-                    <img src="https://backend-q9fm.onrender.com/static/uploads/${profilePic}" alt="Profile Picture" />
+                    <img src=`${profilePic}` alt="Profile Picture" />
                     <h3>${username}</h3>
                     <div class="context-menu">
                         <button onclick="viewUser('${username}')">View</button>
