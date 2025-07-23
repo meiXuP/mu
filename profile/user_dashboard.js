@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fetch(`https://backend-q9fm.onrender.com/api/user/by-email?email=${encodeURIComponent(email)}`, {
         method: "GET",
-        credentials: "include"
+        // credentials: "include"
     })
     .then(res => res.json())
     .then(data => {
