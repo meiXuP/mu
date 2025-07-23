@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("user-gender").textContent = user[3];
             document.getElementById("user-age").textContent = user[4];
             document.getElementById("user-created").textContent = new Date(user[6]).toDateString();
-            document.getElementById("profile-pic").src = `https://res.cloudinary.com/dcfofc9fa/image/upload/v1753271385/profile_pics/${user[5]}`;
+            document.getElementById("profile-pic").src = `${user[5]}`;
 
         } else {
             alert("User not found.");
