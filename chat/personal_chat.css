@@ -1,72 +1,34 @@
-/* Reset & Base */
+/* === RESET & BASE === */
 body {
   margin: 0;
+  padding: 20px;
   font-family: 'Segoe UI', sans-serif;
   background: #0f0f0f;
   color: #fff;
-  overflow: hidden;
-  -webkit-overflow-scrolling: touch;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-}
-
-/* Container */
-.chat-container {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-  overflow: hidden;
-}
-
-.user-list {
-  width: 25%;
-  min-width: 200px;
-  max-width: 300px;
-  background: linear-gradient(145deg, #111111, #1e1e1e);
-  border-right: 2px solid #333;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.user-list::-webkit-scrollbar {
-  display: none;
-}
-
-.user-list .user {
-  display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 15px;
-  cursor: pointer;
-  border-bottom: 1px solid #333;
-  transition: background 0.3s;
+  box-sizing: border-box;
 }
 
-.user:hover {
-  background: #202020;
+/* === CENTERING WRAPPER === */
+.chat-wrapper {
+  width: 100%;
+  max-width: 1300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.user img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 15px;
-  cursor: pointer;
-}
 
-.user span {
-  font-weight: bold;
-  font-size: 16px;
-}
 
+/* === CHAT SECTION === */
 .chat-section {
   flex: 1;
   display: flex;
   flex-direction: column;
   background: #121212;
-  height: 100%;
   position: relative;
 }
 
@@ -81,8 +43,8 @@ body {
   flex: 1;
   padding: 20px;
   overflow-y: auto;
-  scrollbar-width: none;
   font-size: 17px;
+  scrollbar-width: none;
 }
 
 .chat-messages::-webkit-scrollbar {
@@ -105,7 +67,7 @@ body {
   color: #0f0;
 }
 
-/* Chat Input */
+/* === INPUT SECTION === */
 .chat-input {
   display: flex;
   padding: 10px;
@@ -150,13 +112,14 @@ body {
   animation: glow 2s infinite;
 }
 
+/* === GLOWING EFFECT === */
 @keyframes glow {
   0% { box-shadow: 0 0 5px #0ff, 0 0 10px #0ff; }
   50% { box-shadow: 0 0 15px #0ff, 0 0 25px #0ff; }
   100% { box-shadow: 0 0 5px #0ff, 0 0 10px #0ff; }
 }
 
-/* Image Preview Modal */
+/* === IMAGE PREVIEW MODAL === */
 #preview-modal {
   display: none;
   position: fixed;
@@ -181,7 +144,7 @@ body {
   display: none;
 }
 
-/* Profile Pic + Status */
+/* === USER PROFILE & STATUS === */
 .profile-pic {
   width: 50px;
   height: 50px;
@@ -191,7 +154,6 @@ body {
   cursor: pointer;
   border: 2px solid #00ffff;
   animation: glow 2s infinite;
-  transition: box-shadow 0.3s ease;
 }
 
 .glow {
@@ -230,10 +192,12 @@ body {
   background-color: #888;
 }
 
-/* Responsive Design */
+/* === RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
   .chat-container {
     flex-direction: column;
+    height: auto;
+    max-height: none;
   }
 
   .user-list {
@@ -257,11 +221,6 @@ body {
 
   .user img {
     margin: 0 0 5px 0;
-  }
-
-  .chat-section {
-    flex: 1;
-    height: 100%;
   }
 
   .chat-messages {
