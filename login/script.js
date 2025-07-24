@@ -51,7 +51,7 @@ if (otpForm) {
 
         if (result.status === "success") {
             // localStorage.removeItem("verify_email");
-            window.location.href = "https://meixup.github.io/mu/profile/user_dashboard.html";
+            window.location.href = "https://meixup.github.io/mu/login/login.html";
         }
     });
 
