@@ -78,9 +78,13 @@ document.getElementById('logout').addEventListener('click', function() {
         if (response.ok) {
             // alert('You have logged out.');
             localStorage.clear(); // optional: clear saved data
+            localStorage.removeItem("verify_email");
+            localStorage.removeItem("email");
             window.location.href = 'https://meixup.github.io/mu/index.html'; // redirect to index page
         } else {
             localStorage.clear(); // optional: clear saved data
+            localStorage.removeItem("verify_email");
+            localStorage.removeItem("email");
             window.location.href = 'https://meixup.github.io/mu/index.html'; // redirect to index page
             // alert('Logout failed. Please try again.');
         }
