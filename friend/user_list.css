@@ -1,13 +1,22 @@
+:root {
+  --primary-color: #0ff;
+  --bg-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  --font-size-base: clamp(0.9rem, 1vw, 1.1rem);
+  --border-radius: 15px;
+}
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  background: var(--bg-gradient);
   color: #fff;
   overflow-x: hidden;
+  font-size: var(--font-size-base);
 }
 
+/* Header */
 header {
-  padding: 20px;
+  padding: 15px 20px;
   background: rgba(20, 20, 20, 0.8);
   display: flex;
   align-items: center;
@@ -15,28 +24,30 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
+  flex-wrap: wrap;
 }
 
 #search {
   padding: 10px;
   border: none;
   border-radius: 20px;
-  width: 250px;
+  width: clamp(200px, 40vw, 300px);
   background-color: #222;
-  color: #0ff;
-  box-shadow: 0 0 10px #0ff;
+  color: var(--primary-color);
+  box-shadow: 0 0 10px var(--primary-color);
 }
 
+/* Suggestions below the search */
 #suggestions {
   position: absolute;
-  top: 60px;
   left: 20px;
+  width: clamp(200px, 40vw, 300px);
+  margin-top: 10px;
   list-style: none;
   padding: 0;
-  margin: 0;
   background: #111;
   border-radius: 10px;
-  box-shadow: 0 0 10px #0ff;
+  box-shadow: 0 0 10px var(--primary-color);
   z-index: 100;
   display: none;
 }
@@ -51,9 +62,10 @@ header {
   background-color: #222;
 }
 
+/* User cards grid */
 #user-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 20px;
   padding: 30px;
 }
@@ -61,7 +73,7 @@ header {
 .user-card {
   background: rgba(255, 255, 255, 0.05);
   padding: 15px;
-  border-radius: 15px;
+  border-radius: var(--border-radius);
   text-align: center;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
@@ -71,14 +83,14 @@ header {
 
 .user-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 20px #0ff;
+  box-shadow: 0 0 20px var(--primary-color);
 }
 
 .user-card img {
   border-radius: 50%;
   width: 80px;
   height: 80px;
-  border: 2px solid #0ff;
+  border: 2px solid var(--primary-color);
   margin-bottom: 10px;
 }
 
@@ -86,52 +98,17 @@ header {
   display: block;
   font-size: 1.1em;
   font-weight: bold;
-  color: #0ff;
+  color: var(--primary-color);
 }
 
-/* Hamburger Menu */
-.menu-icon {
-  width: 30px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 20px;
-}
-
-.menu-icon div {
-  height: 4px;
-  background: #0ff;
-  border-radius: 2px;
-  transition: all 0.3s ease-in-out;
-}
-
-.menu-icon.open div:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-.menu-icon.open div:nth-child(2) {
-  opacity: 0;
-}
-.menu-icon.open div:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-
-
-
-
-
-
-
-
-
+/* Context menu */
 .context-menu {
   position: absolute;
   display: none;
   background: #111;
   padding: 10px;
   border-radius: 10px;
-  box-shadow: 0 0 15px #0ff;
+  box-shadow: 0 0 15px var(--primary-color);
   z-index: 1000;
   animation: popin 0.3s ease-out;
 }
@@ -141,7 +118,7 @@ header {
   width: 100%;
   margin: 5px 0;
   padding: 8px 12px;
-  background: #0ff;
+  background: var(--primary-color);
   border: none;
   border-radius: 5px;
   color: #000;
@@ -165,18 +142,20 @@ header {
   }
 }
 
-/* Animated Nav Bar */
+/* Nav Menu */
 .nav-menu {
   display: flex;
   gap: 20px;
   transition: opacity 0.3s ease;
+  align-items: center;
 }
 
 .nav-menu a {
-  color: #0ff;
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: bold;
   position: relative;
+  font-size: clamp(0.9rem, 1vw, 1.1rem);
 }
 
 .nav-menu a::after {
@@ -186,7 +165,7 @@ header {
   left: 0;
   width: 0%;
   height: 2px;
-  background: #0ff;
+  background: var(--primary-color);
   transition: width 0.3s ease;
 }
 
@@ -194,3 +173,33 @@ header {
   width: 100%;
 }
 
+/* Hamburger (3 dot) */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--primary-color);
+  background: none;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(20, 20, 20, 0.95);
+    position: absolute;
+    top: 65px;
+    right: 20px;
+    border-radius: 10px;
+    padding: 15px;
+  }
+
+  .nav-menu.show {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
